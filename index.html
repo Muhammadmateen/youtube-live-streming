@@ -1,0 +1,111 @@
+<html>
+<head>
+    <script src="https://apis.google.com/js/api.js"></script>
+
+
+  <!--  <script type="text/javascript">
+        (function( gapi ) {
+            gapi.client.setApiKey(apiKey); // your variable for apiKey
+            window.setTimeout(checkAuth,1);
+
+            function checkAuth() {
+                gapi.auth.authorize({client_id: clientID, scope: scopes, immediate: true},   handleAuthResult);
+            }
+
+            function handleAuthResult(authResult) {
+                var authorizeButton = document.getElementById('id-of-your-login-button');
+                if (authResult && !authResult.error) {
+                    authorizeButton.style.visibility = 'hidden';
+                    makeApiCall();
+                } else {
+                    authorizeButton.style.visibility = '';
+                    authorizeButton.onclick = handleAuthClick;
+                }
+            }
+
+            function handleAuthClick(event) {
+                gapi.auth.authorize({
+                    client_id: clientID,
+                    scope: scopes,
+                    response_type: 'code token id_token gsession',
+                    access_type: accessType,
+                    immediate: false
+                }, handleAuthResult);
+                return false;
+            }
+        })( gapi );
+    </script>-->
+    <script>
+        var apiKey = 'AIzaSyAwD2JHfFuEd0_2CG46dqws2ZPN2Q0NEec';
+        var clientId = '897496247694-rvpegqimij33l260q5qvokao302mbh2e.apps.googleusercontent.com';
+        var scopes = 'profile';
+
+        // Get authorization from the user to access profile info
+        function initAuth() {
+            console.log("Initauth");
+            gapi.client.setApiKey(apiKey);
+            gapi.auth2.init({
+                client_id: clientId,
+                scope: scopes
+            });
+
+        }
+        gapi.load('client:auth2', initAuth);
+    </script>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./auth.js"></script>
+
+
+</head>
+
+<body ng-app="myApp" ng-controller="mainCtrl as ctrl">
+
+<iframe width="425" height="344" src="https://www.youtube.com/embed/znl48_r0Jts?autoplay=1&livemonitor=1" frameborder="0" allowfullscreen></iframe>
+
+<!--<button id="signin-button">Sign in</button>-->
+
+<button ng-click="ctrl.googleAuthorize()">Google Authorize</button> ||
+<button ng-click="ctrl.loadYoutube()">Load Yoyube</button>
+<button ng-click="ctrl.createStream()">Create Stream</button>
+<button ng-click="ctrl.getEventsList()">Events List</button>
+
+
+</body>
+</html>
+
+<!--
+<html>
+<head>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+        var apiKey = 'AIzaSyAwD2JHfFuEd0_2CG46dqws2ZPN2Q0NEec';
+        var clientId = '897496247694-rvpegqimij33l260q5qvokao302mbh2e.apps.googleusercontent.com';
+        var scopes = 'profile';
+
+        // Get authorization from the user to access profile info
+        function initAuth() {
+            console.log("Initauth");
+            gapi.client.setApiKey(apiKey);
+            gapi.auth2.init({
+                client_id: clientId,
+                scope: scopes
+            });
+            var signinButton = document.getElementById('signin-button');
+            signinButton.addEventListener("click", auth);
+        }
+
+        function auth() {
+            gapi.auth2.getAuthInstance().signIn().then(function() {
+                makeApiCall();
+            });
+        }
+
+        gapi.load('client:auth2', initAuth);
+    </script>
+</head>
+
+<body>
+<button id="signin-button">Sign in</button>
+</body>
+</html>-->

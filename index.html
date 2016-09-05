@@ -1,6 +1,5 @@
 <html>
 <head>
-    <script src="https://apis.google.com/js/api.js"></script>
 
 
   <!--  <script type="text/javascript">
@@ -35,6 +34,7 @@
             }
         })( gapi );
     </script>-->
+    <script src="https://apis.google.com/js/api.js"></script>
     <script>
         var apiKey = 'AIzaSyAwD2JHfFuEd0_2CG46dqws2ZPN2Q0NEec';
         var clientId = '897496247694-rvpegqimij33l260q5qvokao302mbh2e.apps.googleusercontent.com';
@@ -61,13 +61,13 @@
 
 <body ng-app="myApp" ng-controller="mainCtrl as ctrl">
 
-<iframe width="425" height="344" src="https://www.youtube.com/embed/znl48_r0Jts?autoplay=1&livemonitor=1" frameborder="0" allowfullscreen></iframe>
+<iframe width="425" height="344" src="https://www.youtube.com/embed/znl48_r0Jts?autoplay=0&livemonitor=1" frameborder="0" allowfullscreen></iframe>
 
 <!--<button id="signin-button">Sign in</button>-->
 
 <button ng-click="ctrl.googleAuthorize()">Google Authorize</button> ||
 <button ng-click="ctrl.loadYoutube()">Load Yoyube</button>
-<button ng-click="ctrl.createStream()">Create Stream</button>
+<button ng-click="createStream()">Create Stream</button>
 <button ng-click="ctrl.getEventsList()">Events List</button>
 
 

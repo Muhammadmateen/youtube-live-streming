@@ -9,7 +9,7 @@
 
     var app = angular.module('myApp',[]);
 
-    app.controller('mainCtrl',function($http)
+    app.controller('mainCtrl',function($http,$scope,$q)
     {
         console.log("Controller Initialize");
 
@@ -35,14 +35,18 @@
        /* var snippet = {
             title : "Create live Streaming using API",
             scheduledStartTime : '2016-08-16T19:20:30.45+01:00',
-        };
-
-        var userData = {
-            part: "snippet,status",
-            snippet: snippet,
-            status: "public"
         };*/
 
+        var userData = {
+        part: 'snippet,status',
+        snippet: {
+            title:"Ali in innovatoras live streaming",
+            scheduledStartTime:"2016-07-29T20:14:38.448Z"
+        },
+        status: {
+            privacyStatus:"public"
+        }
+    };
 
 
         _self.getEventsList = function()
@@ -67,25 +71,67 @@
         };
 
 
+        /*var snippet= {
+            title:"Ali in innovatoras live streaming",
+                scheduledStartTime:"2016-07-29T20:14:38.448Z"
+        };
 
-        _self.createStream = function()
+        var status={
+            privacyStatus:"public"
+        }
+       var part = "snippet,status";
+
+       var userData = [part,snippet,status]*/
+
+
+        $scope.createStream = function()
         {
 
-
+            /*console.log("Function call");
             $http({
-                method: 'POST',
-                url: 'https://www.googleapis.com/youtube/v3/liveBroadcasts',
+                method: "POST",
+                url: "https://www.googleapis.com/youtube/v3/liveBroadcasts",
                 data: userData,
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Authorization':'Bearer ya29.CjAtA5lgBsHT1qHN7AmOPZRrVan4P0tsJDEvAbK6G92xUemS0gcK9pQilo7r7ux36NA'
+                    'Content-Type': 'application/json',
+                    'Authorization':'Bearer ya29.CjAvA26IoX4gCooij2R3D4XuIF00yQcef5KDctwDO-h06-ddQzwJb-AHeOthsXNX_bI'
                 }
             }).then(function (data) {
                 console.log("Data after Request : ",data);
             },function (error) {
                 console.log("Error after Request : ",error);
-            });
+            });*/
 
+
+            $http.post('https://www.googleapis.com/youtube/v3/liveBroadcasts',userData,{
+             headers:
+             {
+             'Content-Type': 'application/json',
+                 'Authorization':'Bearer ya29.CjAvA26IoX4gCooij2R3D4XuIF00yQcef5KDctwDO-h06-ddQzwJb-AHeOthsXNX_bI'
+             }
+             }).then(function (data) {
+             console.log("Data after Request : ",data.data);
+             },function (error) {
+             console.log("Error after Request : ",error);
+             });
+
+
+
+            /*$http({
+                url: "https://www.googleapis.com/youtube/v3/liveBroadcasts",
+                method: "POST",
+                headers: {'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization':'Bearer ya29.CjAvA2UFwvurLMkc5uNv1lEGVQdaaJIKnutQ7Fh2-9WnXUJw7x3b7c162t1cIOPyxXs'},
+                data: $.param({
+                    'part':'snippet,status',
+                    'snippet':snippet,
+                    'status': status
+                })
+            }).then(function(data) {
+                console.log(data);
+            }, function (er) {
+                console.log(er);
+            })*/
 
         };
 
@@ -108,6 +154,9 @@
                     {
                         console.log("Error");
                     }
+                },function(error)
+                {
+                    console.log("Error :asdas ",error);
                 });
         };
 
